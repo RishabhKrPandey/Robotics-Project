@@ -13,7 +13,7 @@ from google.colab.patches import cv2_imshow
 
 img=cv.imread("./task2.jpeg")                                  # Reading image
 cv2_imshow(img)
-img_gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)                  # Converting to grayscale image
+img_gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)                    # Converting to grayscale image
 cv2_imshow(img_gray)
 edges=cv.Canny(img_gray,threshold1=100,threshold2=200)         # Canny Edge Detection
 cv2_imshow(edges)
@@ -21,12 +21,12 @@ contours, _ = cv.findContours(edges, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 contour_img=img.copy()
 cv.drawContours(contour_img, contours, -1, (0, 255, 0), 3)     # Finding Contours and displaying
 cv2_imshow(contour_img)
-img_blur=cv.blur(img,(5,5))                               # Blurring the image
+img_blur=cv.blur(img,(5,5))                                    # Blurring the image
 cv2_imshow(img_blur)
-lower_white = np.array([220,220, 220]) #compare this with 220 and put in readme                       # Masking the image
+lower_white = np.array([220,220, 220])                         # Masking the image
 upper_white = np.array([255, 255, 255])
-mask = cv.inRange(img, lower_white, upper_white)   # put in readme that img_gray was not working since it has only 2D array shape
-result = cv.bitwise_and(img, img, mask=mask)               # To display bright spots
+mask = cv.inRange(img, lower_white, upper_white)   
+result = cv.bitwise_and(img, img, mask=mask)                    # To display bright spots
 
 cv2_imshow(result)
 cv.waitKey(0)
